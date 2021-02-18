@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错误上报</title>
+</head>
+<body>
+    
+</body>
+<script type='text/javascript'>
+    const img = new Image()
+    img.src= 'https://www.baidu.com/s?ie=u'
+    img.onerror=function(evt){
+        console.log('错误上报异常',evt)
+    }
+</script>
+</html>

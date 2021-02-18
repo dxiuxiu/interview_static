@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script >
+
+function stringCompare(p1,p2){
+    
+    if((typeof p1!=='string')&&(typeof p2!=='string')){
+        console.error('input error')
+        return
+    }
+    const str1=Array.from(new Set(p1)).filter((item)=>(item))//.sort()
+    const str2=Array.from(new Set(p2)).filter((item)=>(item))//.sort()
+    console.log('str1',str1)
+    console.log('str2',str2)
+    let longStrArr
+    let shortStrArr
+    if(str1.length>=str2.length){
+        longStrArr = str1
+        shortStrArr = str2
+    } else {
+        longStrArr = str2
+        shortStrArr = str1
+    }
+    console.log('longStrArr',longStrArr)
+    console.log('shortStrArr',shortStrArr)
+    const resArr = shortStrArr.filter((item)=>{
+        return !longStrArr.includes(item)
+    })
+    return resArr.length>0?false:true
+}
+
+// console.log('stringCompare',stringCompare('qrcqanhyspftljqinohjapwnqqhfzavfgluzcoocwyyesownxtzspdiiboucfdkqjbozeqaojxzrhqvswzwjxcsntxxsiejjrnjussebdjs','qggeweqmqanwzwartbokaoozegxhlziiajuyswhlpzebpidlhsdzsnooujtzhosxkvlijfgfrfofjotkrhcjdixpvprlsuqiomxhcmzyytn'))
+// console.log('stringCompare',stringCompare('klfmtgkmmcwtebukdpsnwajlppxixicgqsq','jfswmsfurefcjxrvocisxccuqkffkldfkfqbdgkzbmlk'))
+// console.log('stringCompare',stringCompare('affhmmdtwuldqczogvpxjkmezljywizuuspywbqnhvqrvydsfyeauctioyucycthoiqfbaafhfbcrelbxemrvfanbdvmrgxvza','pyuilccigyaqfmtqmnugnnoufjteupfyfurnwnvjkrjthkzjnhkwdycvofsifeaqtmdowanfgxpgjvppelhrtcmnzqjwtvudfypfzcxjog                                           '))
+
+
+function deepClone(source){
+    if(typeof source!=='object'||typeof source===null){ // 不是引用类型直接返回
+        return source
+    }
+    const result ={}
+    for(const key in source){
+        const item = source[key]
+        // if(typeof item==='object'&&item!==null){
+        //     // deepClone(item)
+        //     result[key] = deepClone(item)
+        // } else {
+        //     result[key] = item
+        // }
+        
+        if(source.hasOwnProperty(key)){ //是否是自身的属性
+            result[key] = deepClone(source[key])
+        }
+    }
+    return  result
+}
+
+const o = {
+    a:'123',
+    f:{
+        f:'123',
+        d:{
+            f:'1'
+        }
+    }
+}
+
+const o_copy = deepClone(o)
+console.log('deepClone',o_copy)
+
+function deepCompare(param1,param2){
+    if((typeof param1!=='object'||typeof param1===null)||(typeof param2!=='object'||typeof param2===null)){
+       return param1===param2
+    //    if(param1!==param2){
+    //         return false
+    //    }
+    }
+    // ******
+    if(param1 === param2){
+        return true
+    }
+
+    /**
+     * 如果两者的自带属性个数不一致肯定不相等直接返回 false
+     * 注意：自己写的时候完全没考虑到数据的情况
+     * 但实际 Object.keys() 对数组也是起作用的
+    */
+    if(Object.keys(param1).length!==Object.keys(param2).length){
+        return false
+    }
+    for(const key in param1){
+        // return deepCompare(param1[key],param2[key])
+        const res = deepCompare(param1[key],param2[key])
+        if(!res){
+            return false
+        }
+    }
+    return true
+}
+
+const c1={
+    a:1,
+    b:2,
+    c:{
+        c1:1,
+        c2:2
+    }
+}
+const c2={
+    a:1,
+    b:2,
+    c:{
+        c1:1,
+        c2:2
+    }
+}
+const res = deepCompare(c1,c2)
+console.log('deepCompare',res)
+
+
+// Array.prototype.flat2=function(deep=1){
+//     this
+// }
+
+const flat2=function(arr,deep=1){
+    /**展开一层*/
+    // return arr.reduce((acc,item)=>{
+    //     // item.prototype.constructor===Array?acc.push(...item):acc.push(item)
+    //     console.log('acc',acc)
+
+    //     // Array.isArray(item)?acc.push(...item):acc.push(item)
+    //     // return acc
+
+    //     return acc.concat(item)
+    // },[])
+
+
+    let result =arr
+    for(let i=0;i<deep;i++){
+        result = result.reduce((acc,item)=>{
+            // item.prototype.constructor===Array?acc.push(...item):acc.push(item)
+
+            // Array.isArray(item)?acc.push(...item):acc.push(item)
+            // return acc
+
+            return acc.concat(item)
+        },[])
+    }
+    return result
+   
+}
+
+const a1=[1,[1,2],[[1,2],[1,1,['a']]]]
+console.log('flat2()',flat2(a1))
+console.log('flat2(2)',flat2(a1,2))
+console.log('flat2(5)',flat2(a1,5))
+</script>
+</html>

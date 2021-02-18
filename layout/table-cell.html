@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+        /* 为什么没有生效 */
+        .layout article div{
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout table">
+        <style>
+            .layout.table .left-right-center{
+                display: table;
+                height: 100px;
+                width: 100%;
+            }
+            .left-right-center>div{
+                display: table-cell;
+            }
+            .layout.table .left{
+                width: 300px;
+                background-color: aqua;
+            }
+            .layout.table .right{
+                width: 300px;
+                background-color: aquamarine;
+            }
+            .layout.table .center{
+                background-color: blue;
+            }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="center">
+                <h1>table 解决方案</h1>
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // GET
+/**
+ * 1、创建 XMLHttpRequest 对象
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/XMLHttpRequest
+*/
+const xhr = XMLHttpRequest
+            ? new XMLHttpRequest()
+            : new window.ActiveXObject('Microsoft.XMLHTTP')
+
+/**
+ * 2、初始化一个请求
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/open
+ * xhrReq.open(method, url, async,...);
+*/
+xhr.open('GET','/api') 
+
+/**
+ * 监听、处理响应
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/open
+ * xhrReq.open(method, url, async,...);
+ * 
+ * readyState - 请求的状态码
+ * 0	UNSENT	代理被创建，但尚未调用 open() 方法。
+ * 1	OPENED	open() 方法已经被调用。
+ * 2	HEADERS_RECEIVED	send() 方法已经被调用，并且头部和状态已经可获得。
+ * 3	LOADING	下载中； responseText 属性已经包含部分数据。
+ * 4	DONE	下载操作已完成。
+ * 
+ * 
+ * status - 响应的状态码(即 http 的状态码)
+ * 1xx
+ * 2xx
+ * 3xx
+ * 4xx
+ * 5xx
+*/
+xhr.onreadystatechange() = function(){
+    if(xhr.readyState === 4){
+        if(xhr.status===200||xhr.status===304||xhr.status===206){
+            /**
+             * responseText 服务器端返回文本
+             * 内容
+             * null - 表示请求失败了
+             * '' - 求还没有被send()
+             * 
+             * response 返回响应的正文
+             * 
+            */
+            console.log(xhr.response);
+            console.log(JSON.parse(xhr.responseText));
+        } else {
+            console.log('请求异常',xhr.response)
+        }
+    }
+}
+
+
+/**
+ * 发送 HTTP 请求
+ * XMLHttpRequest.send(body=null)
+ * 接受一个可选的参数，其作为请求主体；
+ * 如果请求方法是 GET 或者 HEAD，则应将请求主体设置为 null。
+ * 
+ * 如果是异步请求（默认为异步请求），则此方法会在请求发送后立即返回；
+ * 如果是同步请求，则此方法直到响应到达后才会返回。
+ * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send
+*/
+xhr.send()
+
+
+
+// POST
+xhr.open('POST','/login')
+xhr.onreadystatechange=function(){
+    if(xhr.readyState ===4){
+        if(xhr.status === 200){
+            console.log(JSON.parse(xhr.responseText))
+        }
+    }
+}
+
+const postData = {
+    name:'name',
+    password:'111111'
+}
+xhr.send(JSON.stringify(postData))
+
+</script>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1、冒泡排序 bubbleSort 从小到大排序
+
+    // function bubbleSort(source){
+    //     if(!Array.isArray(source)){
+    //         return
+    //     }
+    //     const copy=source.slice(0) // 实现数组拷贝
+
+    //     for(let i=0;i<copy.length-1;i++){
+    //         // 正序
+    //         if(copy[i]>copy[i+1]){
+    //             // 元素位置互换 - 中间变量
+    //             // const temp = copy[i+1]
+    //             // copy[i+1]=copy[i]
+    //             // copy[i]=temp
+
+    //             // 元素位置互换 - splice
+    //             copy[i] = copy.splice(i+1,1,copy[i])[0] // 原来 i+1 的位置换成 i ;原来 i 的位置换成 i+1
+    //         }
+            
+    //     }
+    //     return copy
+    // }
+
+
+
+    function bubbleSort(source){
+        if(!Array.isArray(source)){
+            return
+        }
+        /**
+         * 纯函数
+         * 1、输入只受输入参数影响
+         * 2、执行过程中没有副作用，如这里输入时引用类型，如果不做一次深拷贝函数执行完成后会改变输入参数本身
+        */
+        const copy=source.slice(0) // 实现数组拷贝 - 做到实现一个纯函数
+
+        for(let i=0;i<copy.length-1;i++){
+            for(let j=0;j<copy.length-(i+1);j++){
+                // 正序
+                if(copy[j]>copy[j+1]){
+                    // 元素位置互换 - 中间变量
+                    // const temp = copy[j+1]
+                    // copy[j+1]=copy[j]
+                    // copy[j]=temp
+
+                    // 元素位置互换 - splice
+                    copy[j] = copy.splice(j+1,1,copy[j])[0] // 原来 j+1 的位置换成 j ;原来 j 的位置换成 j+1
+                }
+            }
+            
+        }
+        return copy
+    }
+
+
+    function bubbleSort2(copy){
+        if(!Array.isArray(copy)){
+            return
+        }
+        // const copy=source.slice(0) // 实现数组拷贝
+
+        for(let i=0;i<copy.length-1;i++){
+            for(let j=0;j<copy.length-(i+1);j++){
+                // 正序
+                if(copy[j]>copy[j+1]){
+                    // 元素位置互换 - 中间变量
+                    // const temp = copy[j+1]
+                    // copy[j+1]=copy[j]
+                    // copy[j]=temp
+
+                    // 元素位置互换 - splice
+                    copy[j] = copy.splice(j+1,1,copy[j])[0] // 原来 j+1 的位置换成 j ;原来 j 的位置换成 j+1
+                }
+            }
+            
+        }
+        return copy
+    }
+
+    const a1=[3,4,6,1,3,2,1,1]
+    const a2=[1,4,8,1,3,2,10,1]
+
+    const a1_ = bubbleSort(a1)
+
+    console.log('a1',a1)
+    console.log('a1_',a1_)
+
+    console.log('a1===a1_',a1===a1_)
+    console.log('a1==a1_',a1==a1_)
+
+    const a2_ = bubbleSort2(a2)
+
+    console.log('a2',a2)
+    console.log('a2_',a2_)
+
+    console.log('a2===a2_',a2===a2_)
+    console.log('a2==a2_',a2==a2_)
+
+</script>
+</html>

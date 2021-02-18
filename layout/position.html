@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+        /* 为什么没有生效 */
+        .layout article div{
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout absolute">
+        <style>
+            .left-right-center{
+                position: relative;
+            }
+            .left-right-center>div{
+                position: absolute;
+            }
+            .layout.absolute .left{
+                left: 0;
+                width: 300px;
+                background-color: aqua;
+            }
+            .layout.absolute .right{
+                right: 0px;
+                width: 300px;
+                background-color: aquamarine;
+            }
+            .layout.absolute .center{
+                left: 300px;
+                right: 300px;
+                background-color: blue;
+            }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="center">
+                <h1>position 解决方案</h1>
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+</body>
+</html>

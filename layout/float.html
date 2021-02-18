@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+        .layout article div{
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout float">
+        <style>
+           .left{
+                width: 300px;
+                background-color: aqua;
+            }
+            .right{
+                width: 300px;
+                background-color: aquamarine;
+            }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="center">
+                <h1>浮动解决方案</h1>
+            </div>
+        </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>url 参数解析</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function getUrlParamByKey(key){
+        // const paramsString = location.search.substr(1)
+        // const paramsString = location.search.slice(1)
+        const paramsString = location.search.substring(1)
+        /**
+         * http://127.0.0.1:5500/sort.html?a=123&b=erf&f=235654
+         * search: 'a=123&b=erf&f=235654'
+         * 匹配满足以下条件字串：
+         * 
+        */
+        // const reg = new RegExp(`(^|&)${key}=([^&]*)`,'i') // - 匹配不到最后一个且为空的参数
+        const reg = new RegExp(`(^|&)${key}=([^&]*)(&|$)`,'i') // reg = /`(^|&)${name}=([^&]*)(&|$)`/i
+
+        const result = paramsString.match(reg)
+        console.log('result',result)
+        if(!result){
+            return result[2]
+        }
+    }
+
+</script>
+</html>

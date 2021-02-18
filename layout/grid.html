@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+        /* 为什么没有生效 */
+        .layout article div{
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout grid">
+        <style>
+            .layout.grid .left-right-center{
+                display: grid;
+                width: 100%;
+                grid-template-rows: 100px;
+                grid-template-columns: 300px auto 300px;
+            }
+            .left-right-center>div{
+                
+            }
+            .layout.grid .left{
+                background-color: aqua;
+            }
+            .layout.grid .right{
+                background-color: aquamarine;
+            }
+            .layout.grid .center{
+                background-color: blue;
+            }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="center">
+                <h1>position grid</h1>
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+</body>
+</html>

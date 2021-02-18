@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一个块级元素 A 内嵌了一个块级元素 B, B 元素的高度是 100px, B 元素与 A 元素的上边距是 10px ,请问父元素的实际高度？</title>
+    <style>
+        html *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <section class="sc1">
+        <style>
+            .sc1{
+                background-color: coral;
+                /* 1 */
+                overflow: hidden;
+            }
+            .children{
+                height: 100px;
+                background-color: green;
+                margin-top: 10px;
+            }
+        </style>
+        <div class="children">
+            children
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new运算符</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 
+    const new2=function(func){
+        const o = {}
+        o.__proto__ = func.prototype
+
+        const f = func.call(o,arguments) // 执行构造函数并将构造函数中的上下文指向新创建的对象
+        if(f instanceof Object){
+            return f
+        }
+        return o
+    }
+
+    const new3=function(func,...res){
+        const o = Object.create(func.prototype) // 创建一个指定 __proto__ 指向的对象
+        /**
+         * todo func 有参数怎么办？
+        */
+        const f = func.call(o,...res) // 执行构造函数并将构造函数中的上下文指向新创建的对象
+        if(typeof f === 'object'){
+            return f
+        }
+        return o
+    }
+</script>
+</html>

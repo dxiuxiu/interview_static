@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="ev">
+        <style>
+            #ev{
+                background-color: red;
+                width: 300px;
+                height: 100px;
+                line-height: 100px;
+                text-align: center;
+                vertical-align: middle;
+                color: #fff;
+            }  
+        </style>
+        目标元素
+    </div>
+</body>
+<script>
+    const ev_dom = document.getElementById('ev')
+    // 捕获过程
+    ev_dom.addEventListener('click',function(){
+        console.log('capture ev_dom')
+    },true)
+
+    window.addEventListener('click',function(){
+        console.log('capture window')
+    },true)
+    document.addEventListener('click',function(){
+        console.log('capture document')
+    },true)
+    document.documentElement.addEventListener('click',function(){
+        console.log('capture html')
+    },true)
+    document.body.addEventListener('click',function(){
+        console.log('capture body')
+    },true)
+    
+
+    // 冒泡过程
+
+    ev_dom.addEventListener('click',function(){
+        console.log('propagation ev_dom')
+    })
+
+    window.addEventListener('click',function(){
+        console.log('propagation window')
+    })
+    document.addEventListener('click',function(){
+        console.log('propagation document')
+    })
+    document.documentElement.addEventListener('click',function(){
+        console.log('propagation html')
+    })
+    document.body.addEventListener('click',function(){
+        console.log('propagation body')
+    })
+</script>
+</html>
